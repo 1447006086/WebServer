@@ -29,10 +29,11 @@ public class HttpRequest {
      *
      * @param socket
      */
-    public HttpRequest(Socket socket) {
+    public HttpRequest(Socket socket) throws EmptyRequestException {
         this.socket = socket;
         //1解析请求行
         parseRequestLine();
+
         //2解析消息头
         parseHanders();
         //解析消息正文
@@ -41,19 +42,19 @@ public class HttpRequest {
 
     //解析一个请求的三个步骤
     //1:解析请求行
-    private void parseRequestLine() {
+    private void parseRequestLine() throws EmptyRequestException {
         System.out.println("HttpRequest:开始解析请求行...");
         try {
             //读取请求行
             String line = readLine();
+            if (line.isEmpty()){
+                throw new EmptyRequestException();
+            }
             //将请求行按照空格拆分为三部分,并分别赋值给上述变量
             String[] data = line.split(" ");
             System.out.println("请求行:" + line);
             method = data[0];
-            /*
-             * 下面的代码可能在运行后浏览器发送请求拆分时,在这里赋值给URL时出现
-             * 字符串下标越界异常,这是由于浏览器发送了空请求,原因与常见错误5一样
-             * */
+
             url = data[1];
             protocol = data[2];
             System.out.println("method:" + method);
