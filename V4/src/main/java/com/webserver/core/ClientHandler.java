@@ -37,6 +37,7 @@ public class ClientHandler implements Runnable {
             //将请求行按照空格拆分为三部分,并分别赋值给上述变量
             String[] data=line.split(" ");
             method=data[0];
+            System.out.println("请求行:"+line);
             /*
             * 下面的代码可能在运行后浏览器发送请求拆分时,在这里赋值给URL时出现
             * 字符串下标越界异常,这是由于浏览器发送了空请求,原因与常见错误5一样
@@ -58,11 +59,11 @@ public class ClientHandler implements Runnable {
                 if (line.isEmpty()){//readLine单独读取CRLF返回值应当是空字符串
                     break;
                 }
+                System.out.println("消息头:"+line);
                 data=line.split(":");
                 key=data[0];
                 value=data[1];
                 headers.put(key,value);
-                System.out.println("消息头:"+line);
             }
             System.out.println(headers);
             //2处理请求
