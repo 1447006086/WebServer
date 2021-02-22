@@ -49,7 +49,6 @@ public class HttpResponse {
         private void sendStatusLine() {
         System.out.println("HttpRespone:开始发送状态行...");
         try {
-            OutputStream out = socket.getOutputStream();
             String line = "HTTP/1.1 " + statusCode + " " + statusReason;
             System.out.println("状态行:"+line);
             println(line);
@@ -118,6 +117,12 @@ public class HttpResponse {
 
     public void setFile(File file) {
         this.file = file;
+        System.out.println("资源名:" + file.getName());
+        String line = file.getName().substring(file.getName().indexOf(".") + 1);
+        String type= HttpContext.getMimeType(line);
+        putHeader("Content-Length", file.length() + "");
+        putHeader("Content-Type",type);
+
     }
 
     public int getStatusCode() {

@@ -1,6 +1,7 @@
 package com.webserver.core;
 
 import com.webserver.http.EmptyRequestException;
+import com.webserver.http.HttpContext;
 import com.webserver.http.HttpRequest;
 import com.webserver.http.HttpResponse;
 
@@ -40,22 +41,7 @@ public class ClientHandler implements Runnable {
             //3发送响应
             //先发送一个固定的页面测试一个浏览器是否可以正常接收
             if (file.exists() && file.isFile()) {
-                Map<String, String> mimeMapping = new HashMap<>();
-                //1:发送状态行
-                mimeMapping.put("png", "image/png");
-                mimeMapping.put("jpg", "image/jpeg");
-                mimeMapping.put("gif", "image/gif");
-                mimeMapping.put("html", "test/html");
-                mimeMapping.put("css", "text/css");
-                mimeMapping.put("js", "application/javascript");
-                System.out.println("资源名:" + file.getName());
-                String line = file.getName().substring(file.getName().indexOf(".") + 1);
-                String type=mimeMapping.get(line);
-
-                httpResponse.putHeader("Content-Length", file.length() + "");
-                httpResponse.putHeader("Content-Length", type);
-
-                System.out.println(mimeMapping);
+                //1:发送状态行1
                 httpResponse.setFile(file);
                 //2:发送响应头
             } else {
@@ -69,6 +55,7 @@ public class ClientHandler implements Runnable {
             //统一设置其他响应头
             httpResponse.putHeader("Server", "WebServer");//Server是告知浏览器服务端是谁
             httpResponse.flush();
+
             System.out.println("响应完毕!");
 
             //3:发送响应正文(文件内容)

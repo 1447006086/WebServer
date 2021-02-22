@@ -15,7 +15,16 @@
         <module>V8</module>
         <module>V9</module>
         <module>V10</module>
+        <module>V11</module>
+        <module>V12</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+    </dependencies>
     <properties>
         <!-- 设置 JDK 版本为 1.8 -->
         <maven.compiler.target>1.8</maven.compiler.target>

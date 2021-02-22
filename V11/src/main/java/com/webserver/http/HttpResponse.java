@@ -118,6 +118,12 @@ public class HttpResponse {
 
     public void setFile(File file) {
         this.file = file;
+        System.out.println("资源名:" + file.getName());
+        String line = file.getName().substring(file.getName().indexOf(".") + 1);
+        String type= HttpContext.getMimeType(line);
+        putHeader("Content-Length", file.length() + "");
+        putHeader("Content-Type",type);
+
     }
 
     public int getStatusCode() {
