@@ -17,11 +17,20 @@
         <module>V10</module>
         <module>V11</module>
         <module>V12</module>
-        <module>V</module>
         <module>V13</module>
         <module>V14</module>
+        <module>V15</module>
+        <module>V16</module>
+        <module>V17</module>
+        <module>V18</module>
     </modules>
+
     <dependencies>
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf</artifactId>
+            <version>3.0.11.RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>org.dom4j</groupId>
             <artifactId>dom4j</artifactId>
