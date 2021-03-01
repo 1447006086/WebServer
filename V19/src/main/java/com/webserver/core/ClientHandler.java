@@ -7,6 +7,8 @@ import com.webserver.servlet.*;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -33,19 +35,11 @@ public class ClientHandler implements Runnable {
             //首先通过request获取请求中的抽象路径中的请求部分
             String uri = httpRequest.getRequstURI();
 
+            HttpServlet servlet=ServerContent.getServlet(uri);
+
             //首先判断本次请求是否为请求某个业务
-            if ("/myweb/regUser".equals(uri)) {
+            if (servlet!=null) {
                 //处理注册业务
-                RegServlet servlet=new RegServlet();
-                servlet.service(httpRequest,httpResponse);
-            }else if("/myweb/logUser".equals(uri)){
-                LoginServlet servlet=new LoginServlet();
-                servlet.service(httpRequest,httpResponse);
-            } else if("/myweb/showAllUser".equals(uri)){
-                ShowAllUserServlet servlet=new ShowAllUserServlet();
-                servlet.service(httpRequest,httpResponse);
-            } else if("/myweb/toUpdate".equals(uri)){
-                UpdateServlet servlet=new UpdateServlet();
                 servlet.service(httpRequest,httpResponse);
             } else {
                 File file = new File("webapps" + uri);

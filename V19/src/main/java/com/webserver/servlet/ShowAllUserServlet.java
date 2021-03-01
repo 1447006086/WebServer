@@ -11,8 +11,13 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowAllUserServlet {
-    public void service(HttpRequest request, HttpResponse response) {
+public class ShowAllUserServlet extends HttpServlet {
+    @Override
+    public void doPost(HttpRequest request, HttpResponse response) {
+
+    }
+
+    public void doGet(HttpRequest request, HttpResponse response) {
         System.out.println("ShowAllUserServlet:开始处理用户列表页面...");
         //1:先将user.dat文件中所有用户信息读取出来
         List<User> list = new ArrayList<>();//保存所有用户的记录的集合

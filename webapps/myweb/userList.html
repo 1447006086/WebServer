@@ -17,12 +17,12 @@
         </tr>
 
         <tr th:each="user:${list}"><!-- &{key}与content.setVariable("key",xxx)对应 -->
-            <td th:text="${user.username}">范传奇</td><!--th:text=""用于将当前标签中间的文本换成该属性的值-->
+            <td th:text="${user.username}"></td><!--th:text=""用于将当前标签中间的文本换成该属性的值-->
             <td th:text="${user.passworld}">123456</td>
             <td th:text="${user.passworld}">chuanqi</td>
             <td th:text="${user.age}">22</td>
             <!--生成href的内容为:./toUpdate?username=该用户名-->
-            <td><a href="#" th:href="@{'./toUpdate?username='+${user.username}}">修改信息</a></td>
+            <td><a th:href="@{'./toUpdate?username='+${user.username}}">修改信息</a></td>
 
         </tr>
         <tr th:remove="all"><!--th:remove="all",生成动态页面是这个标签及其子标签全忽略 -->
